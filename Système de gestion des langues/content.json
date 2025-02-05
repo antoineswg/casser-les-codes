@@ -1,0 +1,22 @@
+{
+    "fr": {
+        "indextitle": ["Gestion des langues"],
+        "testtitle": ["Test de la gestion des langues"],
+        "langswitch": ["en"],
+        "affirmative": ["oui"],
+        "negative": ["non"],
+        "animal": ["La langue reste bien la même"],
+        "linktomain": ["Retour à la page d'accueil"],
+        "linktotest": ["Est-ce que la langue reste la même quand je change de page ?"]
+    },
+    "eng": {
+        "indextitle": ["Language management"],
+        "testtitle": ["Language management test"],
+        "langswitch": ["fr"],
+        "affirmative": ["yes"],
+        "negative": ["no"],
+        "animal": ["Language stays the same"],
+        "linktomain": ["Back to the main page"],
+        "linktotest": ["Does the language stays the same when i switch pages ?"]
+    }
+}

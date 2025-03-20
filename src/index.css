@@ -4,10 +4,20 @@
     padding: 0;
 }
 
+:root{
+    --inter: 'Inter', sans-serif;
+    --courier: 'Courier Prime', monospace;
+    --primary-color: #ffffff;
+    --secondary-color: #1F1D1D;
+    --accent-color: #D86524;
+}
+
 html,
 body
 {
     overflow: hidden;
+    font-family: var(--courier);
+    background-color: var(--primary-color);
 }
 
 .webgl
@@ -31,4 +41,60 @@ body
     align-items: center;
     font-size: 2em;
     z-index: 1000;
+}
+
+.navbarDesktop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 10px;
+    font-family: var(--inter);
+    background-color: var(--secondary-color);
+}
+
+.navbarDesktop span{
+    width: 33%;
+}
+
+.navbarDesktop span:nth-child(2){
+    text-align: center;
+}
+
+.navbarDesktop span:nth-child(3){
+    text-align: right;
+}
+
+.navbarDesktop img{
+    width: 60px;
+    height: 60px;
+}
+
+.navbarDesktop a {
+    margin-right: 10px;
+    color: black;
+    color: var(--primary-color);
+}
+
+.activePage{
+    color: var(--accent-color) !important;
+    font-weight: bold;
+    text-decoration: underline 2px;
+}
+
+.navbarDesktop button{
+    background-color: transparent;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 32px;
+    width: calc(3rem + 2 * 16px);
+    color: var(--primary-color);
+    border: solid 2px var(--primary-color);
+}
+
+.navbarMobile{
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }

@@ -1,12 +1,10 @@
-import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export const About = () => {
 
     return (
-        <div>
-            <h1>About</h1>
-            <Link to="/">Accueil</Link> | <Link to="/about">À propos</Link>
-        </div>
+        <>
+        </>
     )
 }
 

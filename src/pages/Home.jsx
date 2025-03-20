@@ -1,19 +1,23 @@
-import { Link } from 'react-router-dom';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { useEffect } from 'react';
 
-export const Home = () => {
+
+import Navbar from '../components/Navbar';
+
+export const Home = ({oui}) => {
 
     useEffect(() => {
         // SCENE
         const scene = new THREE.Scene();
 
+        const center = new THREE.Vector3(1.5, 1.5, -5.5);
+
         // CAMERA
         const aspect = window.innerWidth / window.innerHeight;
         const camera = new THREE.PerspectiveCamera(75, aspect, .01, 1000);
-        camera.position.set(0, 1, 3);
+        camera.position.copy(center.clone().add(new THREE.Vector3(-.1, 0, 0)));
 
         // RENDERER
         const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -24,6 +28,13 @@ export const Home = () => {
 
         // CONTROLS
         const controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.copy(center);
+        controls.enableRotate = true;
+        controls.minPolarAngle = THREE.MathUtils.degToRad(60);
+        controls.maxPolarAngle = THREE.MathUtils.degToRad(100);
+        controls.maxDistance = 2;
+        controls.zoomSpeed = 3;
+        controls.update();
 
         // RESIZE
         const onResize = () => {
@@ -44,8 +55,6 @@ export const Home = () => {
             }
         };
 
-        hideLoadingScreen();
-
         const animation = () => {
             controls.update();
             renderer.render(scene, camera);
@@ -59,7 +68,8 @@ export const Home = () => {
         const material = new THREE.MeshBasicMaterial({ color: 0xfedcba });
         const cube = new THREE.Mesh(geometry, material);
         cube.scale.set(.1, .1, .1);
-        scene.add(cube);
+        cube.position.set(1.5, 1, -5);
+        //scene.add(cube);
 
         // LIGHTS
         const ambientLight = new THREE.AmbientLight(0xffffff, 1);
@@ -70,7 +80,7 @@ export const Home = () => {
         scene.add(directionalLight);
 
         // MODELS
-        const toLoad = ['heater', 'livre', 'marteau', 'porte', 'salle_entree'];
+        const toLoad = ['office','door', 'objects'];
 
         toLoad.forEach((modelName) => {
             const loader = new GLTFLoader();
@@ -119,7 +129,7 @@ export const Home = () => {
 
         window.addEventListener('click', onMouseClick);
 
-        // Cleanup on unmount
+        // enlever la scene au changement de fenetre
         return () => {
             window.removeEventListener('resize', onResize);
             document.body.removeChild(renderer.domElement);
@@ -127,10 +137,8 @@ export const Home = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Home</h1>
-            <Link to="/">Accueil</Link> | <Link to="/about">À propos</Link>
-        </div>
+        <>
+        </>
     );
 }
 
